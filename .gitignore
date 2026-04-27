@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+storage-debug.log
+.secret.*
+google-service-account.json
+GoogleService-Info.plist
+google-services.json
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+lib/
+.expo/
+.expo-shared/
+
+# TypeScript
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# EAS
+.easignore
+
+# Temporary
+*.tmp
+*.temp

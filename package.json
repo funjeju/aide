@@ -1,0 +1,25 @@
+{
+  "name": "aide-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Aide — AI 기반 개인 일정관리 SaaS (모노레포)",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "mobile:dev": "pnpm --filter mobile start",
+    "admin:dev": "pnpm --filter admin dev",
+    "functions:dev": "pnpm --filter functions serve",
+    "functions:build": "pnpm --filter functions build",
+    "functions:deploy": "pnpm --filter functions deploy",
+    "shared:build": "pnpm --filter @aide/shared build",
+    "firebase:dev": "firebase emulators:start",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

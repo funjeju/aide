@@ -1,0 +1,30 @@
+{
+  "name": "functions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Aide Cloud Functions",
+  "engines": {
+    "node": "20"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aide/shared": "workspace:*",
+    "@google-cloud/tasks": "^5.2.0",
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.0",
+    "@google/generative-ai": "^0.14.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.0.0"
+  }
+}

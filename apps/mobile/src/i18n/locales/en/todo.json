@@ -1,0 +1,1 @@
+{ "title": "ToDo", "filter": { "all": "All", "life": "Life", "work": "Work" }, "priority": { "URGENT": "Urgent", "HIGH": "High", "NORMAL": "Normal", "LOW": "Low", "SOMEDAY": "Someday" }, "status": { "CONFIRMED": "Planned", "IN_PROGRESS": "In Progress", "DONE": "Done", "CANCELED": "Canceled" }, "messages": { "noTasks": "No tasks", "completed": "{{count}} done!" } }

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["ES2022"],
+    "target": "ES2022",
+    "paths": {
+      "@aide/shared": ["../../packages/shared/src/index.ts"],
+      "@aide/firebase": ["../../packages/firebase/src/index.ts"],
+      "@aide/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

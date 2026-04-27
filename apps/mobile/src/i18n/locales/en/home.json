@@ -1,0 +1,8 @@
+{
+  "greeting": "Hello, {{nickname}}!",
+  "todayProgress": "Today's Progress",
+  "todayTasks": "Today's Tasks",
+  "noTasks": "No tasks yet. Tap the + button to add one!",
+  "pendingDrafts": "{{count}} drafts pending review",
+  "top3Title": "Top 3 Recommendations"
+}

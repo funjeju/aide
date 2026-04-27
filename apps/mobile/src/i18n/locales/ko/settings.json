@@ -1,0 +1,16 @@
+{
+  "title": "내 정보",
+  "noName": "이름 없음",
+  "notifications": "알림 설정",
+  "language": "언어",
+  "googleCalendar": "Google 캘린더 연동",
+  "subscription": "구독 관리",
+  "privacy": "개인정보 처리방침",
+  "terms": "이용약관",
+  "signOut": "로그아웃",
+  "cancel": "취소",
+  "signOutConfirm": {
+    "title": "로그아웃",
+    "message": "정말 로그아웃 하시겠어요?"
+  }
+}

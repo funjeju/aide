@@ -1,0 +1,116 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "priority", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" },
+        { "fieldPath": "track", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "dueDate", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" },
+        { "fieldPath": "projectId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" },
+        { "fieldPath": "mandalartTaskId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "drafts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" },
+        { "fieldPath": "startAt", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mandalartNodes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "projectId", "order": "ASCENDING" },
+        { "fieldPath": "depth", "order": "ASCENDING" },
+        { "fieldPath": "parentId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mandalartNodes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "projectId", "order": "ASCENDING" },
+        { "fieldPath": "isDeleted", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "sessionId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "rawData",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "channel", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "subscriptions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "admin_logs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "adminUid", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "aicoloring-799c0",
+    "staging": "app-staging",
+    "production": "app-prod"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "tabs": { "home": "Home", "todo": "ToDo", "mandalart": "Mandalart", "settings": "Profile" },
+  "buttons": { "save": "Save", "cancel": "Cancel", "delete": "Delete", "confirm": "Confirm", "edit": "Edit", "close": "Close" },
+  "actions": { "loading": "Loading...", "saving": "Saving...", "processing": "Processing..." }
+}

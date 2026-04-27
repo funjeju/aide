@@ -1,0 +1,38 @@
+// @see docs/07_인증_보안_v0.1.md
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // 음성 파일: 본인만 읽기/쓰기, 최대 10MB, 5분 이내 파일만
+    match /voices/{uid}/{fileId} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('audio/.*');
+    }
+
+    // 프로필 이미지: 본인만 읽기/쓰기, 최대 5MB
+    match /avatars/{uid}.jpg {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType == 'image/jpeg';
+    }
+
+    // 첨부파일: 본인만 읽기/쓰기, 최대 20MB
+    match /attachments/{uid}/{fileId} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size < 20 * 1024 * 1024;
+    }
+
+    // 기타 모든 경로: 거부
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

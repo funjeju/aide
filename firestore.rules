@@ -1,0 +1,191 @@
+// @see docs/07_인증_보안_v0.1.md (Firestore Security Rules)
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── 헬퍼 함수 ──────────────────────────────────────────────────
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return request.auth.token.admin == true;
+    }
+
+    function isSuperAdmin() {
+      return request.auth.token.role == 'superadmin';
+    }
+
+    function hasField(field) {
+      return field in request.resource.data;
+    }
+
+    function notChanging(field) {
+      return !(field in request.resource.data) || request.resource.data[field] == resource.data[field];
+    }
+
+    // ── 사용자 ────────────────────────────────────────────────────
+    match /users/{uid} {
+      allow read: if isAuth() && isOwner(uid);
+      allow create: if isAuth() && isOwner(uid);
+      allow update: if isAuth() && isOwner(uid)
+        && notChanging('uid')
+        && notChanging('userTier')    // Tier 변경은 Functions만 허용
+        && notChanging('createdAt');
+      allow delete: if false;         // 삭제는 Functions만 허용
+    }
+
+    // ── 한도 카운터 ───────────────────────────────────────────────
+    match /userLimits/{uid} {
+      allow read: if isAuth() && isOwner(uid);
+      allow write: if false;          // Functions만 허용
+    }
+
+    // ── RawData ───────────────────────────────────────────────────
+    match /rawData/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow write: if false;          // Functions만 허용
+    }
+
+    // ── ParsedData ────────────────────────────────────────────────
+    match /parsedData/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // ── Drafts ────────────────────────────────────────────────────
+    match /drafts/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && resource.data.status == 'PENDING'
+        && notChanging('userId')
+        && notChanging('rawDataId')
+        && notChanging('parsedDataId')
+        && notChanging('createdAt');
+      allow create, delete: if false;
+    }
+
+    // ── Tasks ─────────────────────────────────────────────────────
+    match /tasks/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && notChanging('userId')
+        && notChanging('createdAt')
+        && notChanging('sourceDraftId')
+        && notChanging('sourceRawDataId');
+      allow create, delete: if false;  // confirmDraft Functions만 생성
+    }
+
+    // ── Events ────────────────────────────────────────────────────
+    match /events/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && notChanging('userId')
+        && notChanging('createdAt');
+      allow delete: if false;
+    }
+
+    // ── Persons ───────────────────────────────────────────────────
+    match /persons/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && notChanging('userId')
+        && notChanging('createdAt');
+      allow delete: if false;
+    }
+
+    // ── Projects ──────────────────────────────────────────────────
+    match /projects/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && notChanging('userId')
+        && notChanging('createdAt');
+      allow delete: if false;
+    }
+
+    // ── Sections ──────────────────────────────────────────────────
+    match /sections/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth() && resource.data.userId == request.auth.uid && notChanging('userId');
+      allow delete: if false;
+    }
+
+    match /subSections/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth() && resource.data.userId == request.auth.uid && notChanging('userId');
+      allow delete: if false;
+    }
+
+    // ── Mandalart ─────────────────────────────────────────────────
+    match /mandalartNodes/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth()
+        && resource.data.userId == request.auth.uid
+        && notChanging('userId')
+        && notChanging('projectId')
+        && notChanging('depth')
+        && notChanging('createdAt');
+      allow delete: if false;
+    }
+
+    // ── Chats ─────────────────────────────────────────────────────
+    match /chats/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    // ── Subscriptions ─────────────────────────────────────────────
+    match /subscriptions/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow write: if false;          // RevenueCat Webhook + Functions만
+    }
+
+    // ── Payments ─────────────────────────────────────────────────
+    match /payments/{id} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // ── Tiers (공개 읽기) ─────────────────────────────────────────
+    match /tiers/{tier} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    // ── Admin Users ───────────────────────────────────────────────
+    match /admin_users/{uid} {
+      allow read, write: if isAdmin() && isSuperAdmin();
+    }
+
+    // ── Admin Logs ────────────────────────────────────────────────
+    match /admin_logs/{id} {
+      allow read: if isAdmin();
+      allow write: if false;          // Functions만
+    }
+
+    // ── 기타 모든 문서: 거부 ──────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

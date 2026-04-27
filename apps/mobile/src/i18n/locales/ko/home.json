@@ -1,0 +1,8 @@
+{
+  "greeting": "안녕하세요, {{nickname}}님!",
+  "todayProgress": "오늘 진행률",
+  "todayTasks": "오늘 할 일",
+  "noTasks": "할 일이 없어요. 입력 버튼으로 추가해보세요!",
+  "pendingDrafts": "검토 대기 중인 Draft {{count}}건",
+  "top3Title": "오늘의 추천 Top 3"
+}

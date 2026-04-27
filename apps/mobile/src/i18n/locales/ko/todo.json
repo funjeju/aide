@@ -1,0 +1,25 @@
+{
+  "title": "ToDo",
+  "filter": {
+    "all": "전체",
+    "life": "일상",
+    "work": "비즈니스"
+  },
+  "priority": {
+    "URGENT": "긴급",
+    "HIGH": "중요",
+    "NORMAL": "보통",
+    "LOW": "낮음",
+    "SOMEDAY": "언젠가"
+  },
+  "status": {
+    "CONFIRMED": "예정",
+    "IN_PROGRESS": "진행 중",
+    "DONE": "완료",
+    "CANCELED": "취소됨"
+  },
+  "messages": {
+    "noTasks": "할 일이 없어요",
+    "completed": "{{count}}건 완료!"
+  }
+}

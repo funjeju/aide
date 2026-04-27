@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-life: #10B981;
+  --color-work: #3B82F6;
+}

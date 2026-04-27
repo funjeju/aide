@@ -1,0 +1,10 @@
+{
+  "title": "새로운 입력",
+  "voiceInput": "음성",
+  "textInput": "텍스트",
+  "textPlaceholder": "할 일, 일정, 사람 정보를 자유롭게 입력하세요...\n\n예) 내일 오전 10시 김팀장과 미팅\n오늘 저녁 운동하기\n박대리 생일 5월 3일",
+  "submit": "AI 분석",
+  "tapToRecord": "탭하여 녹음 시작",
+  "recording": "녹음 중... 탭하여 중지",
+  "processing": "AI 분석 중..."
+}
